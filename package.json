@@ -1,0 +1,34 @@
+{
+  "name": "2021-SW-Festival",
+  "version": "1.0.0",
+  "description": "![image](https://user-images.githubusercontent.com/68385605/139328301-a2ecf862-4abf-46c0-8234-c883f107eb88.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M0REAI/2021-SW-Festival.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M0REAI/2021-SW-Festival/issues"
+  },
+  "homepage": "https://github.com/M0REAI/2021-SW-Festival#readme",
+  "dependencies": {
+    "JSON": "^1.0.0",
+    "bcrypt": "^5.0.1",
+    "connect-redis": "^6.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "passport": "^0.5.0",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-naver": "^1.0.6",
+    "redis": "^3.1.2"
+  }
+}
