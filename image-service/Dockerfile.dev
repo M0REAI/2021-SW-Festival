@@ -1,7 +1,11 @@
 FROM python:3.11.0a1-alpine3.14
 WORKDIR /usr/app
 COPY ./requirements.txt .
-COPY ./app.py .
 RUN pip install -r requirements.txt
+COPY ./app.py .
+COPY ./run.py .
+COPY config ./config
+COPY service ./service
+COPY view ./view
 EXPOSE 5000
-CMD ["flask","run","--host=0.0.0.0"]
+CMD ["python","run.py"]

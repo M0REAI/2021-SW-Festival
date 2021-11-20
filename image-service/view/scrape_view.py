@@ -3,8 +3,8 @@ import json
 from service.scrape_service import ScrapeService
 
 class ScrapeView:
-    path = '/image'
-    router = Blueprint('scrape_view',__name__,url_prefix='/api')
+    path = '/'
+    router = Blueprint('scrape_view',__name__,url_prefix='/api/image')
     @router.route(f'{path}',methods=["GET"])
     def get_images():
         keyword = request.args.get('keyword')
