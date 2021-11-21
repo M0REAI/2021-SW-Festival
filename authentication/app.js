@@ -6,6 +6,7 @@ const passport = require('passport');
 const google = require('./passport/googleStrategy')
 const github = require('./passport/githubStrategy')
 const naver = require('./passport/naverStrategy')
+const kakao = require('./passport/kakaoStrategy')
 const session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
@@ -16,6 +17,7 @@ var app = express()
 google()
 github()
 naver()
+kakao()
 
 
 app.use(express.json());
@@ -84,6 +86,10 @@ app.get('/auth/naver',
   passport.authenticate('naver'),
 );
 
+app.get('/auth/kakao',
+  passport.authenticate('kakao'),
+);
+
 app.get('/auth/google/callback',
 	passport.authenticate('google', {
     failureRedirect: '/auth'}),
@@ -124,6 +130,19 @@ app.get('/auth/naver/callback',
     res.redirect('/')
 });
 
+app.get('/auth/kakao/callback',
+	passport.authenticate('kakao', {
+  	failureRedirect: '/auth',
+}), (req,res)=>{
+    //console.log(req.user)
+    req.session.user = {
+        id: req.user.id,
+        name: req.user.displayName,
+        provider : req.user.provider
+    }
+    res.redirect('/')
+});
+
 app.get('/auth/logout', function(req, res){    
     if(req.session.user){
         console.log('로그아웃');
@@ -143,7 +162,7 @@ app.get('/auth/logout', function(req, res){
 app.get('/auth/userinfo', (req, res, next) => {
     
     if(req.session.user){
-        res.send({"사용자 이름" : req.session.user.name,"제공자 ":req.session.user.provider})
+        res.send({"ID" : req.session.user.id,"사용자 이름" : req.session.user.name,"제공자 ":req.session.user.provider})
     }
     else{
         res.send({ 'title': 'Express','user':'로그인을 해주세요'});
